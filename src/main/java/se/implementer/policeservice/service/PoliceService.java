@@ -15,8 +15,8 @@ public class PoliceService {
         this.policeClient = policeClient;
     }
 
-    public List<PoliceEvent> getPoliceNews() {
+    public List<PoliceEvent> getPoliceNews(String city, String date, String type) {
 
-        return policeClient.getPoliceNews() ;
+        return policeClient.getPoliceNews(city, date, type) ;
     }
 }

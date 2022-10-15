@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import se.implementer.policeservice.model.PoliceEvent;
 import se.implementer.policeservice.service.PoliceService;
@@ -31,8 +32,10 @@ public class PoliceNewsController {
     })
     @SecurityRequirement(name ="Bearer Auth")
     @GetMapping("/news")
-    public List<PoliceEvent> getPoliceNews() {
-        return policeService.getPoliceNews();
+    public List<PoliceEvent> getPoliceNews(@RequestParam(required = false) String city,
+                                           @RequestParam(required = false) String date,
+                                           @RequestParam(required = false) String type) {
+        return policeService.getPoliceNews(city, date, type);
     }
 
 }
