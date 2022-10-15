@@ -1,0 +1,7 @@
+server:
+  servlet:
+    contextPath: /police-service
+  port: 8089
+
+
+
