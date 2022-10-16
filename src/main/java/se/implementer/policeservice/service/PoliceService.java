@@ -16,7 +16,14 @@ public class PoliceService {
     }
 
     public List<PoliceEvent> getPoliceNews(String city, String date, String type) {
+        return filterByEventType(policeClient.getPoliceNews(city, date, type), type);
+    }
 
-        return policeClient.getPoliceNews(city, date, type) ;
+    public List<PoliceEvent> filterByEventType(List<PoliceEvent> events, String type) {
+
+        return type == null ? events : events
+                .stream()
+                .filter(policeEvent -> policeEvent.getType().equals(type))
+                .toList();
     }
 }
