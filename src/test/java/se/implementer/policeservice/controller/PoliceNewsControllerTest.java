@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import se.implementer.policeservice.model.PoliceEvent;
 import se.implementer.policeservice.service.PoliceService;
 
 import java.util.List;
@@ -16,6 +15,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static utils.TestData.createPoliceEvents;
 
 @WebMvcTest
 public class PoliceNewsControllerTest {
@@ -38,7 +38,18 @@ public class PoliceNewsControllerTest {
                           {
                             "id": 1223,
                             "name": "desc",
-                            "type": "Brand"
+                            "type": "Brand",
+                            "location": {
+                                  "name": "Solna"
+                                }
+                          },
+                          {
+                            "id": 1224,
+                            "name": "desc",
+                            "type": "Rattfylleri",
+                            "location": {
+                                  "name": "Skellefteå"
+                                }
                           }
                         ]
                         """))
@@ -55,14 +66,4 @@ public class PoliceNewsControllerTest {
                 .andExpect(status().isOk());
     }
 
-    private List<PoliceEvent> createPoliceEvents() {
-        return List.of(
-                PoliceEvent
-                        .builder()
-                        .id(1223)
-                        .description("desc")
-                        .type("Brand")
-                        .build()
-        );
-    }
 }

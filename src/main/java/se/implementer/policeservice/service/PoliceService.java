@@ -23,7 +23,6 @@ public class PoliceService {
     }
 
     public List<PoliceEvent> filterByEventType(List<PoliceEvent> events, String type) {
-
         return type == null ? events : events
                 .stream()
                 .filter(policeEvent -> policeEvent.getType().equals(type))
