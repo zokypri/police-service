@@ -1,6 +1,7 @@
 package se.implementer.policeservice.client;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,14 +20,15 @@ public class PoliceClient {
 
     private final RestTemplate restTemplate;
 
-    private static final String BASE_URL = "https://polisen.se/api/events";
+    private final String baseUrl;
 
-    public PoliceClient(RestTemplate restTemplate) {
+    public PoliceClient(RestTemplate restTemplate, @Value("${police.url}") String baseUrl) {
         this.restTemplate = restTemplate;
+        this.baseUrl = baseUrl;
     }
 
     public List<PoliceEvent> getPoliceNews(String city, String date, String type) {
-        log.info("fetch data from police");
+        log.info("Fetching data from police api");
         var response =  restTemplate.exchange(
                 addQueryParams(city, date, type),
                 HttpMethod.GET,
@@ -34,13 +36,13 @@ public class PoliceClient {
                 new ParameterizedTypeReference<List<PoliceEvent>>() {}
         );
         var events = response.getBody();
-        log.info("fetched data from police");
+        log.info("Fetched data from police api");
         return events;
     }
 
     private String addQueryParams(String city, String date, String type) {
         return UriComponentsBuilder
-                .fromUriString(BASE_URL)
+                .fromUriString(baseUrl)
                 .queryParamIfPresent(PoliceApiParams.CITY.getParamType(), Optional.ofNullable(city))
                 .queryParamIfPresent(PoliceApiParams.TYPE.getParamType(), Optional.ofNullable(type))
                 .queryParamIfPresent(PoliceApiParams.DATE.getParamType(), Optional.ofNullable(date))
