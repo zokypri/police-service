@@ -51,9 +51,7 @@ public class PoliceNewsControllerTest {
                 .thenReturn(List.of());
 
         mockMvc.perform(get("/v1/police/news"))
-                .andExpect(content().json("""
-                        []
-                        """))
+                .andExpect(content().json("[]"))
                 .andExpect(status().isOk());
     }
 

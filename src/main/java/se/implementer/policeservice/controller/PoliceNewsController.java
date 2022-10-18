@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import se.implementer.policeservice.service.PoliceService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("v1/police")
 public class PoliceNewsController {
@@ -35,7 +37,10 @@ public class PoliceNewsController {
     public List<PoliceEvent> getPoliceNews(@RequestParam(required = false) String city,
                                            @RequestParam(required = false) String date,
                                            @RequestParam(required = false) String type) {
-        return policeService.getPoliceNews(city, date, type);
+        log.info("Preparing police service news");
+        var policeNews = policeService.getPoliceNews(city, date, type);
+        log.info("Police news prepared {}", policeNews.size());
+        return policeNews;
     }
 
 }
