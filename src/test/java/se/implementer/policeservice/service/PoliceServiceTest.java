@@ -1,4 +1,4 @@
-package service;
+package se.implementer.policeservice.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.implementer.policeservice.client.PoliceClient;
-import se.implementer.policeservice.service.PoliceService;
 
 import java.util.List;
 
