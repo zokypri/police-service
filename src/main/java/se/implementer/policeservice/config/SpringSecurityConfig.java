@@ -17,10 +17,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity security) throws Exception {
         security.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/v1/**").permitAll()
+                .antMatchers("/v1/**").permitAll() //TODO close this when JWT is implemented
                 .and()
                 .authorizeRequests()
-                .antMatchers(DEFAULT_EXCLUDE_URL_PATTERNS.toArray(new String[0])).permitAll()
+                .antMatchers(DEFAULT_EXCLUDE_URL_PATTERNS.toArray(new String[0]))
+                .permitAll()
                 .and().authorizeRequests()
                 .anyRequest().authenticated();
     }
