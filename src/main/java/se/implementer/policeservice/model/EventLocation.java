@@ -1,5 +1,6 @@
 package se.implementer.policeservice.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -9,7 +10,8 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 public class EventLocation {
 
-    String name;
+    @JsonProperty("name")
+    String city;
 
     String gps;
 

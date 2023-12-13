@@ -15,7 +15,7 @@ public class TestData {
                         .description("desc")
                         .type("Brand")
                         .url("/url")
-                        .location(EventLocation.builder().name("Solna").build())
+                        .location(EventLocation.builder().city("Solna").build())
                         .build(),
                 PoliceEvent
                         .builder()
@@ -23,7 +23,7 @@ public class TestData {
                         .url("/url")
                         .description("desc")
                         .type("Rattfylleri")
-                        .location(EventLocation.builder().name("Skellefteå").build())
+                        .location(EventLocation.builder().city("Skellefteå").build())
                         .build()
         );
     }
@@ -36,7 +36,7 @@ public class TestData {
                         .description("desc")
                         .type("Brand")
                         .url("https://polisen.se/url")
-                        .location(EventLocation.builder().name("Solna").build())
+                        .location(EventLocation.builder().city("Solna").build())
                         .build(),
                 PoliceEvent
                         .builder()
@@ -44,7 +44,7 @@ public class TestData {
                         .description("desc")
                         .url("https://polisen.se/url")
                         .type("Rattfylleri")
-                        .location(EventLocation.builder().name("Skellefteå").build())
+                        .location(EventLocation.builder().city("Skellefteå").build())
                         .build()
         );
     }
@@ -57,7 +57,7 @@ public class TestData {
                         .description("desc")
                         .type("Brand")
                         .url("https://polisen.se/url")
-                        .location(EventLocation.builder().name("Solna").build())
+                        .location(EventLocation.builder().city("Solna").build())
                         .build()
         );
     }
