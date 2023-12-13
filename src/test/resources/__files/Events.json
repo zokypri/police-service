@@ -1,0 +1,40 @@
+[
+  {
+    "id": 375940,
+    "datetime": "2022-10-13 8:34:13 +02:00",
+    "name": "13 oktober 06:50, Stöld/inbrott, Solna",
+    "summary": "En man har olovandes tagit sig in i ett hus i Hagaparken.",
+    "url": "/aktuellt/handelser/2022/oktober/13/13-oktober-0650-stoldinbrott-solna/",
+    "type": "Stöld/inbrott",
+    "location": {
+      "name": "Solna",
+      "gps": "59.368879,18.008433"
+    }
+  },
+  {
+    "id": 373991,
+    "datetime": "2022-10-05 8:31:15 +02:00",
+    "name": "05 oktober 07:24, Rån, försök, Solna",
+    "summary": "I Skytteholm utsattes brottsoffret för ett rånförsök.",
+    "url": "/aktuellt/handelser/2022/oktober/5/05-oktober-0724-ran-forsok-solna/",
+    "type": "Rån, försök",
+    "location": {
+      "name": "Solna",
+      "gps": "59.368879,18.008433"
+    }
+  },
+  {
+    "id": 373693,
+    "datetime": "2022-10-03 13:20:50 +02:00",
+    "name": "03 oktober 12:45, Räddningsinsats, Solna",
+    "summary": "I Råsunda biträder polisen räddningstjänsten.",
+    "url": "/aktuellt/handelser/2022/oktober/3/03-oktober-1245-raddningsinsats-solna/",
+    "type": "Brand",
+    "location": {
+      "name": "Solna",
+      "gps": "59.368879,18.008433"
+    }
+  }
+]
+
+

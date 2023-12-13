@@ -1,0 +1,8 @@
+server:
+  servlet:
+    contextPath: /police-service
+  port: 8089
+
+police:
+  url: https://polisen.se/api/events
+
