@@ -28,7 +28,7 @@ public class PoliceServiceTest {
     @BeforeEach
     void setup() {
         when(policeClient.getPoliceNews(any(), any(), any()))
-                .thenReturn(createPoliceEvents());
+                .thenReturn(createPoliceEventsMocked());
     }
 
     @Test
