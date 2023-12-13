@@ -38,6 +38,7 @@ public class PoliceNewsControllerTest {
                           {
                             "id": 1223,
                             "name": "desc",
+                            "url": "https://polisen.se/url",
                             "type": "Brand",
                             "location": {
                                   "name": "Solna"
@@ -46,6 +47,7 @@ public class PoliceNewsControllerTest {
                           {
                             "id": 1224,
                             "name": "desc",
+                            "url": "https://polisen.se/url",
                             "type": "Rattfylleri",
                             "location": {
                                   "name": "Skellefteå"
