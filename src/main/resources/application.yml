@@ -6,3 +6,14 @@ server:
 police:
   url: https://polisen.se/api/events
 
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  producer:
+    topic:
+      policeWarning: "PoliceWarning"
