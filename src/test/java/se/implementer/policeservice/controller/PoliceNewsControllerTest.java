@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static utils.TestData.createPoliceEvents;
 
-@WebMvcTest
+@WebMvcTest(controllers = PoliceNewsController.class)
 public class PoliceNewsControllerTest {
 
     @MockBean
