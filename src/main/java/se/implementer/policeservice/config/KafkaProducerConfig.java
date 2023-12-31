@@ -1,3 +1,4 @@
+/*
 package se.implementer.policeservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,8 @@ public class KafkaProducerConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
+    // TODO remove this file and add the settings in application.uml file
+
     @Bean
     public ProducerFactory<String, PoliceWarningAlert> producerFactoryPoliceWarningAlert() {
         Map<String, Object> configProps = new HashMap<>();
@@ -34,3 +37,4 @@ public class KafkaProducerConfig {
     }
 }
 
+*/
