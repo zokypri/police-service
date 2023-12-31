@@ -3,8 +3,10 @@ server:
     contextPath: /police-service
   port: 8089
 
-police:
-  url: http://localhost:${wiremock.server.port}
+spring:
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+
 
 
 
