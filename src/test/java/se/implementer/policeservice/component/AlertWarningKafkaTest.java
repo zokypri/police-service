@@ -3,13 +3,13 @@ package se.implementer.policeservice.component;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
-import org.apache.kafka.clients.consumer.Consumer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext
 @ActiveProfiles("test")
 @EmbeddedKafka
 public class AlertWarningKafkaTest {
@@ -29,8 +30,6 @@ public class AlertWarningKafkaTest {
 
     @Value("${kafka.producer.topic.policeWarning}")
     private String topic;
-
-    private Consumer<String, String> consumer;
 
     @Test
     void shouldPublishKafkaEvent() throws Exception {
@@ -50,6 +49,7 @@ public class AlertWarningKafkaTest {
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.content().json(responseContent)); // Assert content using json()
 
+            //TODO test kafka producer is producing events
         }
     }
 }
