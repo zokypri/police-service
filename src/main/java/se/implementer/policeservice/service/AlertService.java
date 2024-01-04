@@ -34,31 +34,11 @@ public class AlertService {
     }
 
     public AlertResponse sendMessage(PoliceWarningAlert msg) {
-        if (isDevProfileActive()) {
+/*        if (isDevProfileActive()) {
             return AlertResponse.builder().alertId(msg.getId()).msg("Dev profile is active so no alert is sent").build();
-        }
+        }*/
         // TODO add error handling and remove the send() method. Use @AdviceController in an exception handler
-        //kafkaTemplate.send(topicPoliceWarning, msg);
-        send(msg);
+        kafkaTemplate.send(topicPoliceWarning, msg);
         return AlertResponse.builder().alertId(msg.getId()).msg("Alert success").build();
     }
-
-    private void send(PoliceWarningAlert message) {
-        ListenableFuture<SendResult<String, PoliceWarningAlert>> listenableFuture = kafkaTemplate.send(topicPoliceWarning, message);
-
-        listenableFuture.addCallback(new ListenableFutureCallback<>() {
-            @Override
-            public void onSuccess(SendResult<String, PoliceWarningAlert> result) {
-                System.out.println("Sent message=[" + message +
-                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
-            }
-
-            @Override
-            public void onFailure(Throwable ex) {
-                System.out.println("Unable to send message=[" +
-                        message + "] due to : " + ex.getMessage());
-            }
-        });
-    }
-
 }
