@@ -60,7 +60,7 @@ public class AlertService {
             @SneakyThrows
             @Override
             public void onFailure(Throwable ex) {
-                throw new KafkaPoliceException(String.format("Unable to sent message got error %s", ex.getMessage()), ex);
+                throw new KafkaPoliceException( ex);
             }
         });
     }

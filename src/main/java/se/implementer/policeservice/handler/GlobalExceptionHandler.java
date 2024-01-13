@@ -11,7 +11,7 @@ import se.implementer.policeservice.exception.KafkaPoliceException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final String GLOBAL_ERROR_MESSAGE = "Global exception caught during service operation";
+    private final String GLOBAL_ERROR_MESSAGE = "Exception caught: %s";
 
     @ExceptionHandler
     protected ResponseEntity<ErrorMessage> handleGlobalException(Throwable ex) {
@@ -19,21 +19,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    protected void handleKafkaPoliceException(KafkaPoliceException policeEx) {
-        log.error(String.format(GLOBAL_ERROR_MESSAGE + " with message: %s and exception: %s", policeEx.getMessage(), policeEx));
+    protected ResponseEntity<ErrorMessage> handleKafkaPoliceException(KafkaPoliceException policeEx) {
+        return createError(policeEx, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private ResponseEntity<ErrorMessage> createError(Throwable ex, HttpStatus httpStatus) {
-        log.error(String.format(GLOBAL_ERROR_MESSAGE + " with exception: %s", ex));
+        String errorMessage = String.format(GLOBAL_ERROR_MESSAGE, ex.getMessage());
+        log.error(String.format(errorMessage + " with exception: %s", ex.getMessage(), ex));
         return new ResponseEntity<>(
-                new ErrorMessage(
-                        GLOBAL_ERROR_MESSAGE,
-                        ex.getMessage(),
-                        ex
-                ),
+                new ErrorMessage(errorMessage),
                 httpStatus
         );
     }
 
-    protected record ErrorMessage(String errorMessage, String exceptionMessage, Throwable e){}
+    protected record ErrorMessage(String exceptionMessage){}
 }
