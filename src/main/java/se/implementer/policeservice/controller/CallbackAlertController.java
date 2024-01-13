@@ -34,6 +34,7 @@ public class CallbackAlertController {
     @SecurityRequirement(name ="Bearer Auth")
     @PostMapping("/alert")
     public AlertResponse policeAlert(@RequestBody PoliceWarningAlert policeWarningAlert) {
+        log.info("Received alert from the Police authority with content: {}", policeWarningAlert);
         return alertService.sendMessage(policeWarningAlert);
     }
 }
