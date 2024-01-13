@@ -57,6 +57,7 @@ public class PoliceNewsControllerTest {
                           }
                         ]
                         """))
+                // TODO add test for the actual data in the response
                 .andExpect(status().isOk());
     }
     @Test
@@ -70,4 +71,14 @@ public class PoliceNewsControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    void shouldThrowException() throws Exception {
+
+        when(policeService.getPoliceNews(any(), any(), any()))
+                .thenThrow(new RuntimeException());
+
+        mockMvc.perform(get("/v1/police/news"))
+                .andExpect(status().isInternalServerError());
+
+    }
 }
