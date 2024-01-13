@@ -7,8 +7,10 @@ import lombok.Value;
 @Builder
 public class AlertResponse {
 
+    // TODO add validation for minimum number and not negative
     int alertId;
 
+    // TODO add validation for minimum and maximum size
     String msg;
 
 }
