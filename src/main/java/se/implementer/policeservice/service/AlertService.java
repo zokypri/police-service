@@ -1,10 +1,8 @@
 package se.implementer.policeservice.service;
 
-import java.util.List;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -25,15 +23,8 @@ public class AlertService {
 
     private final KafkaTemplate<String, PoliceWarningAlert> kafkaTemplate;
 
-    private final Environment environment;
-
-    public AlertService(KafkaTemplate<String, PoliceWarningAlert> kafkaTemplate, Environment environment) {
-        this.environment = environment;
+    public AlertService(KafkaTemplate<String, PoliceWarningAlert> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
-    }
-
-    private boolean isDevProfileActive() {
-        return List.of(environment.getActiveProfiles()).contains("dev");
     }
 
     public AlertResponse sendMessage(PoliceWarningAlert msg) {
