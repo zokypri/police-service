@@ -36,7 +36,7 @@ public class PoliceClientTest {
 
         assertThat(response).isNotNull();
         assertEquals(response.size(), 1);
-        assertEquals(response.get(0).getLocation().getName(), "Solna");
+        assertEquals(response.get(0).getLocation().getCity(), "Solna");
         assertEquals(response.get(0).getId(), 375940);
     }
 

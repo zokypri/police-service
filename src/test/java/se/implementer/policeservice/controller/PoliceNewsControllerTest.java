@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import se.implementer.policeservice.service.PoliceService;
 
@@ -17,7 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static utils.TestData.createPoliceEvents;
 
-@WebMvcTest
+@WebMvcTest(controllers = PoliceNewsController.class)
+@ActiveProfiles("test")
 public class PoliceNewsControllerTest {
 
     @MockBean
@@ -38,6 +40,7 @@ public class PoliceNewsControllerTest {
                           {
                             "id": 1223,
                             "name": "desc",
+                            "url": "https://polisen.se/url",
                             "type": "Brand",
                             "location": {
                                   "name": "Solna"
@@ -46,6 +49,7 @@ public class PoliceNewsControllerTest {
                           {
                             "id": 1224,
                             "name": "desc",
+                            "url": "https://polisen.se/url",
                             "type": "Rattfylleri",
                             "location": {
                                   "name": "Skellefteå"
@@ -53,6 +57,7 @@ public class PoliceNewsControllerTest {
                           }
                         ]
                         """))
+                // TODO add test for the actual data in the response
                 .andExpect(status().isOk());
     }
     @Test
@@ -66,4 +71,14 @@ public class PoliceNewsControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    void shouldThrowException() throws Exception {
+
+        when(policeService.getPoliceNews(any(), any(), any()))
+                .thenThrow(new RuntimeException());
+
+        mockMvc.perform(get("/v1/police/news"))
+                .andExpect(status().isInternalServerError());
+
+    }
 }

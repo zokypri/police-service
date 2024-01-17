@@ -26,7 +26,7 @@ public class PoliceNewsController {
         this.policeService = policeService;
     }
 
-    @Operation(summary = " Get authentication token for registered user")
+    @Operation(summary = " Get police news from the Swedish police department")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User authentication token provided"),
             @ApiResponse(responseCode = "401", description = "User not authorised",
