@@ -4,5 +4,6 @@ public enum WarningLevel {
     LOW,
     MEDIUM,
     HIGH,
-    SEVERE
+    SEVERE,
+    RESOLVED
 }
