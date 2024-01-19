@@ -3,6 +3,7 @@ package se.implementer.policeservice.handler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import se.implementer.policeservice.exception.KafkaPoliceException;
@@ -12,6 +13,11 @@ import se.implementer.policeservice.exception.KafkaPoliceException;
 public class GlobalExceptionHandler {
 
     private final String GLOBAL_ERROR_MESSAGE = "Exception caught: %s";
+
+    @ExceptionHandler
+    protected ResponseEntity<ErrorMessage> handleGlobalException(MethodArgumentNotValidException ex) {
+        return createError(ex, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler
     protected ResponseEntity<ErrorMessage> handleGlobalException(Throwable ex) {
