@@ -3,6 +3,7 @@ package se.implementer.policeservice.controller;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -60,5 +61,52 @@ public class CallbackAlertControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(requestContent))
                 .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    void shouldThrowValidationExceptionWhenIdIsNegative() throws Exception {
+
+        String filePathRequest = "__files/ValidationErrorNegativeIdAlertWarning.json";
+
+        String requestContent = Files.readString(Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(filePathRequest)).toURI()));
+
+        mockMvc.perform(
+                        post("/v1/callback/alert")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestContent))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(Matchers.containsString("'policeWarningAlert' on field 'id': rejected value [-1]")));
+    }
+
+
+
+    @Test
+    void shouldThrowValidationExceptionWhenMsgIsBlank() throws Exception {
+
+        String filePathRequest = "__files/ValidationErrorBlankMsgAlertWarning.json";
+
+        String requestContent = Files.readString(Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(filePathRequest)).toURI()));
+
+        mockMvc.perform(
+                        post("/v1/callback/alert")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestContent))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(Matchers.containsString("Alert message is mandatory")));
+    }
+
+    @Test
+    void shouldThrowWhenValidationErrorMsgIsNullA() throws Exception {
+
+        String filePathRequest = "__files/ValidationErrorMsgIsNullAlertWarning.json";
+
+        String requestContent = Files.readString(Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(filePathRequest)).toURI()));
+
+        mockMvc.perform(
+                        post("/v1/callback/alert")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestContent))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(Matchers.containsString("NotNull.policeWarningAlert.msg")));
     }
 }
