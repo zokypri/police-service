@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class CallbackAlertController {
     })
     @SecurityRequirement(name ="Bearer Auth")
     @PostMapping("/alert")
-    public AlertResponse policeAlert(@RequestBody PoliceWarningAlert policeWarningAlert) {
+    public AlertResponse policeAlert(@Valid @RequestBody PoliceWarningAlert policeWarningAlert) {
         log.info("Received alert from the Police authority with content: {}", policeWarningAlert);
         return alertService.sendMessage(policeWarningAlert);
     }
