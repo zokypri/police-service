@@ -42,4 +42,6 @@ public class AlertServiceTest {
 
         verify(kafkaTemplate, times(1)).send(any(), any());
     }
+
+    // TODO add Kafka error case tests
 }

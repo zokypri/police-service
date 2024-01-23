@@ -15,7 +15,6 @@ public class PoliceWarningAlert {
     @Min(value = 1)
     int id;
 
-    @NotNull
     @NotBlank(message = "Alert message is mandatory")
     @Size(max = 255, message = "Can't be longer than 255 chars")
     String msg;
